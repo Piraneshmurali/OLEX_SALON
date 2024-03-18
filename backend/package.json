@@ -2,7 +2,7 @@
   "name": "olex_salon",
   "version": "1.0.0",
   "description": "Online Salon Management System - ITP24_Feb_NU_WD_01 ",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
