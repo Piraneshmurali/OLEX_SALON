@@ -1,18 +1,18 @@
 const { CURSOR_FLAGS } = require("mongodb");
 const jwt = require("jsonwebtoken");
-var tableModel = require("./productModel");
+var productModel = require("./productModel");
 
 module.exports.getDataFromDBService = () => {
   return new Promise((resolve, reject) => {
-    tableModel
+    productModel
       .find({})
       .then((result) => resolve(result))
       .catch((error) => reject(false));
   });
 };
-module.exports.getTableDBService = (id) => {
+module.exports.getProductDBService = (id) => {
   return new Promise((resolve, reject) => {
-    tableModel
+    productModel
       .findById(id)
       .then((result) => resolve(result))
       .catch((error) => {
@@ -21,35 +21,35 @@ module.exports.getTableDBService = (id) => {
   });
 };
 
-module.exports.createTableDBService = (tableDetails) => {
+module.exports.createProductDBService = (productDetails) => {
   return new Promise((resolve, reject) => {
-    var tableModelData = new tableModel();
-    tableModelData.name = tableDetails.name;
-    tableModelData.description = tableDetails.description;
-    tableModelData.category = tableDetails.category;
-    tableModelData.price = tableDetails.price;
-    tableModelData.stock = tableDetails.stock;
-    tableModelData.review = tableDetails.review;
+    var productModelData = new productModel();
+    productModelData.name = productDetails.name;
+    productModelData.description = productDetails.description;
+    productModelData.category = productDetails.category;
+    productModelData.price = productDetails.price;
+    productModelData.stock = productDetails.stock;
+    productModelData.review = productDetails.review;
 
-    tableModelData
+    productModelData
       .save()
       .then((result) => resolve(true))
       .catch((error) => reject(false));
   });
 };
 
-module.exports.updateTableDBService = (id, tableDetails) => {
+module.exports.updateProductDBService = (id, productDetails) => {
   return new Promise((resolve, reject) => {
-    tableModel
-      .findByIdAndUpdate(id, tableDetails)
+    productModel
+      .findByIdAndUpdate(id, productDetails)
       .then((result) => resolve(result))
       .catch((error) => reject(false));
   });
 };
 
-module.exports.removeTableDBService = (id) => {
+module.exports.removeProductDBService = (id) => {
   return new Promise((resolve, reject) => {
-    tableModel
+    productModel
       .findByIdAndDelete(id)
       .then((result) => resolve(result))
       .catch((error) => reject(false));

@@ -2,19 +2,19 @@ var express = require('express');
 
 const router = express.Router();
 
-// Table route
+// Product route
 
-// var tableController = require('../src/table/tableController');
+var productController = require('../src/product/productController');
 
-// router.route('/table/getAll').get(tableController.getDataControllerfn);
+router.route('/product/getAll').get(productController.getDataControllerfn);
 
-// router.route('/table/create').post(tableController.createTableControllerFn);
+router.route('/product/create').post(productController.createProductControllerFn);
 
-// router.route('/table/update/:id').patch(tableController.updateTableController);
+router.route('/product/update/:id').patch(productController.updateProductController);
 
-// router.route('/table/delete/:id').delete(tableController.deleteTableController);
+router.route('/product/delete/:id').delete(productController.deleteProductController);
 
-// router.route('/table/get/:id').get(tableController.findTableController);
+router.route('/product/get/:id').get(productController.findProductController);
 
 
 

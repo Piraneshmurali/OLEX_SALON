@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var TableSchema = new Schema(
+var ProductSchema = new Schema(
   {
     name: {
       type: String,
@@ -34,4 +34,4 @@ var TableSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("product", TableSchema);
+module.exports = mongoose.model("product", ProductSchema);
