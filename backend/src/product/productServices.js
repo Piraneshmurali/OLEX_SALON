@@ -24,10 +24,12 @@ module.exports.getTableDBService = (id) => {
 module.exports.createTableDBService = (tableDetails) => {
   return new Promise((resolve, reject) => {
     var tableModelData = new tableModel();
-    tableModelData.course = tableDetails.course;
-    tableModelData.time = tableDetails.time;
-    tableModelData.faculty = tableDetails.faculty;
-    tableModelData.location = tableDetails.location;
+    tableModelData.name = tableDetails.name;
+    tableModelData.description = tableDetails.description;
+    tableModelData.category = tableDetails.category;
+    tableModelData.price = tableDetails.price;
+    tableModelData.stock = tableDetails.stock;
+    tableModelData.review = tableDetails.review;
 
     tableModelData
       .save()
