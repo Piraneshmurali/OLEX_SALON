@@ -1,25 +1,37 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var TableSchema = new Schema({
+var TableSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: String,
+      required: true,
+    },
+    stock: {
+      type: String,
+      required: true,
+    },
+    review: [
+      {
+        type: String,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-    course: {
-        type: String,
-        required: true
-    },
-    time: {
-        type: String,
-        required:true
-    },
-    faculty: {
-        type: String,
-        required:true
-    },  
-    location: {
-        type: String,
-        required: true
-    },
-    
-});
-
-module.exports = mongoose.model('table', TableSchema);
+module.exports = mongoose.model("product", TableSchema);
