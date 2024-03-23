@@ -68,6 +68,23 @@ var updateProductController = async (req, res) => {
     res.status(500).json({ status: false, message: "Internal Server Error" });
   }
 };
+var filterProductController = async (req, res) => {
+  try {
+    var result = await productService.getDataFromDBServicewithFilter(
+      req.params.filter
+    );
+    if (result) {
+      res
+        .status(200)
+        .json({ status: true,data:result, message: "Product get successfully" });
+    } else {
+      res.status(404).json({ status: false, message: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error filter product:", error);
+    res.status(500).json({ status: false, message: "Internal Server Error" });
+  }
+};
 
 var deleteProductController = async (req, res) => {
   try {
@@ -92,4 +109,5 @@ module.exports = {
   updateProductController,
   deleteProductController,
   findProductController,
+  filterProductController
 };

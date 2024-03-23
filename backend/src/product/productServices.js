@@ -10,6 +10,17 @@ module.exports.getDataFromDBService = () => {
       .catch((error) => reject(false));
   });
 };
+module.exports.getDataFromDBServicewithFilter = (filter) => {
+  return new Promise((resolve, reject) => {
+    console.log("Filter "+filter);
+    productModel
+      .find({
+        category:filter
+      }).exec()
+      .then((result) => resolve(result))
+      .catch((error) => reject(false));
+  });
+};
 module.exports.getProductDBService = (id) => {
   return new Promise((resolve, reject) => {
     productModel
@@ -28,8 +39,8 @@ module.exports.createProductDBService = (productDetails) => {
     productModelData.description = productDetails.description;
     productModelData.category = productDetails.category;
     productModelData.price = productDetails.price;
-    productModelData.stock = productDetails.stock;
-    productModelData.review = productDetails.review;
+    productModelData.ImageUrl=productDetails.ImageUrl;
+
 
     productModelData
       .save()

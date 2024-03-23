@@ -16,6 +16,8 @@ router.route('/product/delete/:id').delete(productController.deleteProductContro
 
 router.route('/product/get/:id').get(productController.findProductController);
 
+router.route('/product/getfiltered/:filter').get(productController.filterProductController);
+
 
 
 module.exports = router;

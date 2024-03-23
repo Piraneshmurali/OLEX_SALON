@@ -7,6 +7,10 @@ var ProductSchema = new Schema(
       type: String,
       required: true,
     },
+    ImageUrl: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: true,
@@ -22,12 +26,10 @@ var ProductSchema = new Schema(
     stock: {
       type: String,
       required: true,
+      default:"0"
+      
     },
-    review: [
-      {
-        type: String,
-      },
-    ],
+   
   },
   {
     timestamps: true,
