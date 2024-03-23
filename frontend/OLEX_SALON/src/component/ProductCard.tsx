@@ -7,6 +7,7 @@ import {
   Card,
   Container,
   Flex,
+  Grid,
   HoverCard,
   IconButton,
   Inset,
@@ -18,8 +19,11 @@ import { GiPoloShirt } from "react-icons/gi";
 import { TbCashBanknote } from "react-icons/tb";
 import { UpdateDialog } from ".";
 import { PiFinnTheHuman } from "react-icons/pi";
-import { PropsWithChildren, ReactNode } from "react";
+import { PropsWithChildren, ReactNode, useEffect, useState } from "react";
 import BadgeComponent from "./BadgeComponent";
+import { MdInventory } from "react-icons/md";
+import { BiInfoCircle } from "react-icons/bi";
+import UpdateStockcomp from "./UpdateStockcomp";
 
 const ProductCard = ({
   Name,
@@ -27,6 +31,7 @@ const ProductCard = ({
   Price,
   Catagory,
   Discription,
+  stock,
   _id,
 }: {
   Name: String;
@@ -34,13 +39,31 @@ const ProductCard = ({
   Price: String;
   Discription: String;
   Catagory: "Uni-SEX" | "Male" | "Female";
+  stock: string;
   _id: String;
 }) => {
   return (
     <HoverCard.Root>
       <HoverCard.Trigger>
-        <Card className="  border-red-500 w-80 h-80 max-h-80 max-w-80 ">
+        <Card className="  border-red-500 w-80 h-80 max-h-80 max-w-80">
           <Inset clip={"border-box"}>
+            {parseInt(stock) <= 10 && (
+              <Flex justify={"end"}>
+                <Box
+                  color="red"
+                  className=" z-10 absolute bg-red-300 rounded-md"
+                  p={"1"}
+                  mr={"1"}
+                  mt={"2"}
+                >
+                  <Flex justify={"center"} align={"center"}>
+                    <BiInfoCircle />
+                    <Text>Running out of stock</Text>
+                  </Flex>
+                </Box>
+              </Flex>
+            )}
+
             <img
               style={{
                 display: "block",
@@ -54,7 +77,7 @@ const ProductCard = ({
           </Inset>
           <br />
           <Box>
-            <Flex justify={"between"} align={"end"}>
+            <Flex justify={"between"} align={"center"}>
               <Text weight={"medium"}>
                 <Link className=" text-black">{Name}</Link>
               </Text>
@@ -114,11 +137,24 @@ const ProductCard = ({
                 </AlertDialog.Root>
               </Flex>
             </Flex>
-            <Flex align={"center"} gap={"1"}>
-              <TbCashBanknote />
-              <Text>{Price}</Text>
-            </Flex>
-            <BadgeComponent catogory={Catagory} />
+            <Grid columns={"2"}>
+              <Container>
+                <Flex align={"center"} gap={"1"}>
+                  <TbCashBanknote />
+                  <Text>{Price} LKR</Text>
+                </Flex>
+                <Flex align={"center"} gap={"1"}>
+                  <MdInventory />
+                  <Text>Stock : {stock}</Text>
+                </Flex>
+                <BadgeComponent catogory={Catagory} />
+              </Container>
+              <Flex justify={"end"} align={"end"}>
+                <Box>
+                  <UpdateStockcomp _id={_id} />
+                </Box>
+              </Flex>
+            </Grid>
 
             <br />
           </Box>

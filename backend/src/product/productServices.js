@@ -31,6 +31,19 @@ module.exports.getProductDBService = (id) => {
       });
   });
 };
+module.exports.UpdateProductStock = (id,body) => {
+  return new Promise((resolve, reject) => {
+    
+    productModel
+      .findByIdAndUpdate(id,{
+        stock:body.stock
+      })
+      .then((result) => resolve(result))
+      .catch((error) => {
+        console.log("Error caused whie fetching :id " + error);
+      });
+  });
+};
 
 module.exports.createProductDBService = (productDetails) => {
   return new Promise((resolve, reject) => {

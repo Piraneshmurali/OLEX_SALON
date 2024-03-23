@@ -14,7 +14,8 @@ interface Productx {
   description: String;
   price: String;
   ImageUrl: string;
-  category: String;
+  category: "Uni-SEX" | "Female" | "Male";
+  stock: string;
   _id: String;
 }
 
@@ -32,8 +33,9 @@ const Cloths = () => {
       description: "",
       price: "",
       ImageUrl: "",
-      category: "",
+      category: "Male",
       _id: "",
+      stock: "",
     },
   ]);
 
@@ -173,6 +175,7 @@ const Cloths = () => {
                 Catagory={product.category}
                 Name={product.name}
                 ImgUrl={product.ImageUrl}
+                stock={product.stock}
                 _id={product._id}
               />
             ))}

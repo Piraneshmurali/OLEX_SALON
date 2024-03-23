@@ -32,6 +32,24 @@ var findProductController = async (req, res) => {
   }
 };
 
+var UpdateStockController = async (req, res) => {
+  try {
+    var result = await productService.UpdateProductStock(req.params.id,
+      req.body);
+      console.log(req.body);
+    if (result) {
+      res
+        .status(200)
+        .json({ status: true, data: result, message: "Product found" });
+    } else {
+      res.status(404).json({ status: false, message: "Product not found" });
+    }
+  } catch (error) {
+    console.error("Error finding product:", error);
+    res.status(500).json({ status: false, message: "Internal Server Error" });
+  }
+};
+
 var createProductControllerFn = async (req, res) => {
   try {
     var status = await productService.createProductDBService(req.body);
@@ -109,5 +127,6 @@ module.exports = {
   updateProductController,
   deleteProductController,
   findProductController,
-  filterProductController
+  filterProductController,
+  UpdateStockController
 };
