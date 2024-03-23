@@ -19,24 +19,7 @@ import { TbCashBanknote } from "react-icons/tb";
 import { UpdateDialog } from ".";
 import { PiFinnTheHuman } from "react-icons/pi";
 import { PropsWithChildren, ReactNode } from "react";
-
-const BagdeC = ({
-  type,
-  childrens,
-}: {
-  type: String;
-  childrens: ReactNode;
-}) => {
-  console.log(type);
-
-  if ((type = "Uni-SEX")) {
-    return <Badge color="violet">{childrens}</Badge>;
-  } else if ((type = "Male")) {
-    return <Badge color="green">{childrens}</Badge>;
-  } else {
-    return <Badge color="teal">{childrens}</Badge>;
-  }
-};
+import BadgeComponent from "./BadgeComponent";
 
 const ProductCard = ({
   Name,
@@ -50,7 +33,7 @@ const ProductCard = ({
   ImgUrl: string;
   Price: String;
   Discription: String;
-  Catagory: String;
+  Catagory: "Uni-SEX" | "Male" | "Female";
   _id: String;
 }) => {
   return (
@@ -135,15 +118,8 @@ const ProductCard = ({
               <TbCashBanknote />
               <Text>{Price}</Text>
             </Flex>
-            <BagdeC
-              type={Catagory}
-              childrens={
-                <Flex align={"center"} gap={"1"}>
-                  <PiFinnTheHuman />
-                  <Text>{Catagory}</Text>
-                </Flex>
-              }
-            ></BagdeC>
+            <BadgeComponent catogory={Catagory} />
+
             <br />
           </Box>
         </Card>
